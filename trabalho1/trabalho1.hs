@@ -57,9 +57,11 @@ list = [1..20]
 
 gera1 :: [Int]
 gera1 = [x ^ 3 | x <- list, even(x), x > 3, x < 11]
+-- Lista gerada = [64,216,512,1000]
 
 gera2 :: [(Int, Int)]
-gera2 = [(x, y) | x <- list, y <- list, x <= 5, y > 5, y < x * 3 ]
+gera2 = [(x, y) | x <- list, y <- list, x <= 5, y > x, y < x * 3 ]
+-- Lista gerada = [(1,2),(2,3),(2,4),(2,5),(3,4),(3,5),(3,6),(3,7),(3,8),(4,5),(4,6),(4,7),(4,8),(4,9),(4,10),(4,11),(5,6),(5,7),(5,8),(5,9),(5,10),(5,11),(5,12),(5,13),(5,14)]
 
 l1 = [15, 16]
 gera3_aux :: [Int] -> [Int]
@@ -68,12 +70,15 @@ gera3_aux (x:xs) = [y | y <- [1..x]] ++ gera3_aux xs
 
 gera3 :: [Int]
 gera3 = gera3_aux l1
+-- Lista gerada = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 
 gera4 :: [(Int, Int)]
-gera4 = [(x, x + 1) | x <- [1..10], even(x)]
+gera4 = [(x, x + 1) | x <- [1..10], even(x), x < 10]
+-- Lista gerada = [(2,3),(4,5),(6,7),(8,9)]
 
 gera5 :: [Int]
 gera5 = [x + y | (x, y) <- gera4]
+-- Lista gerada = [5,9,13,17]
 
 -- EXERCICIO 5:
 -- A
