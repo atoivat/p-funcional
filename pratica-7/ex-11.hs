@@ -1,0 +1,5 @@
+busca_elem :: Integer -> [Integer] -> (Bool, Integer)
+busca_elem _ [] = (False, 0)
+busca_elem n (h:t)
+  | n == h = (True, 1)
+  | otherwise = let interm = busca_elem n t in (False || fst interm, (snd interm) + 1)
