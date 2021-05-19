@@ -46,7 +46,7 @@ minimo2 (x:xs)
 removeMenor :: Ord a => [a] -> ([a], a)
 removeMenor [x] = ([], x)
 removeMenor (x:xs)
-  | x < menorResto = (menorResto:resto, x)
+  | x < menorResto = (xs, x)
   | otherwise = (x:resto, menorResto)
   where
     (resto, menorResto) = removeMenor xs
