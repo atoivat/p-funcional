@@ -251,17 +251,23 @@ ataca (xl, xc) (yl, yc) =
   (xl-xc == yl-yc) ||
   (xl+xc == yl+yc)
 
+-- A partir de uma lista de posições, compara se o primeiro elemento (peça) 
+-- não ataca os das próximas colunas(index + 1) recursivamente. 
 headNaoAtaca :: [Integer] -> Integer -> Bool
 headNaoAtaca [h1] _ = True
 headNaoAtaca (h1:h2:t) index = 
   (not (ataca(h1, 1) (h2, index+1))) && 
   headNaoAtaca (h1:t) (index+1)
 
+-- index -> coluna
+
+-- Verifica se os elementos de um tabuleiro não se atacam
+-- De forma que verifica pra lista em si, e após verifica para o tail dela
 naoAtacam :: [Integer] -> Bool
 naoAtacam [x] = True
 naoAtacam (h:t) = headNaoAtaca (h:t) 1 && naoAtacam t
 
-
+-- PermutacaoAux 2 3 vai dar os conjuntos possiveis de 2 elementos que vão de 1 até 3
 permutacaoAux :: Integer -> Integer -> [[Integer]]
 permutacaoAux 0 _ = [[]]
 permutacaoAux x xr = [ [e] ++ l | e <- [1..xr], l <- permutacaoAux (x-1) xr]
