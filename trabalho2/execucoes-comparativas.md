@@ -1,3 +1,11 @@
+# Trabalho de Programação Funcional 
+
+**Gustavo Vinícius Alba - 11911BCC016**
+
+**Otávio Almeida Leite - 11911BCC010**
+
+* * *
+
 * Obs: os valores correspondentes às entradas de "tempo" nas tabelas a seguir foram obtidos através do comando `:set +s`. Eles estão sujeitos a condições específicas de cada computador e contexto, e serão analisados apenas como um valor aparente.
 
 # Exercício 1 - Bubble Sort
@@ -59,6 +67,9 @@
 | x6 | 66 | 0.00 |
 | x7 | 94 | 0.01 |
 
+## Análise Comparativa das Execuções
+Em geral, não há mudança de quantidade de trocas a serem realizadas para ordenar as listas de acordo com o Bubble Sort, isso porque as trocas seguem sempre o mesmo raciocínio. O que melhora progressivamente do original para a variação 1 e depois para a variação 2 é que, por ocorrerem paradas antecipadas nos algoritmos, ocorrem menos comparações entre elementos da lista e, portanto, a execução ocorre em menos tempo. A última variação se aproveita que após cada chamada de "troca", o último elemento da lista (e nas chamadas seguintes, os imediatos antes dele), já se encontra na posição correta de ordenação da lista. Ou seja, a cada nova chamada de "troca", há menos uma comparação para ser feita na próxima chamada recursiva. A primeira variação apenas confere se, em algum momento anterior ao "final" do algoritmo original a lista já está ordenada, o que pode acontecer em alguns casos, e mais comparações se tornam desnecessárias.
+
 # Exercício 2 - Selection Sort
 
 ## Original:
@@ -99,6 +110,9 @@
 | x6 | 13 | 0.01 |
 | x7 | 19 | 0.0 |
 
+## Análise Comparativa das Execuções
+Nos casos de listas muito grandes, o algoritmo original se mostrou extremamente ineficiente, ao ponto de não conseguirmos completar as chamadas de execução de forma prática, em tempo hábil. Nas listas menores, não houve variação da quantidade de trocas, isso porque a lógica do algoritmo permanesce a mesma: sempre haverá a necessidade de mover o menor valor para a "frente" da lista, ordenando-a dessa forma. A diferença é que na segunda variação o mínimo é encontrado de forma muito mais eficiente usando a estratégia do 'foldr1' de operações binárias feitas repetidamente com um acumulador. No algoritmo original, a estratégia para encontrar o mínimo é a recursiva, que pesa muito mais para o aumento do tempo de execução, especialmente em listas grandes.
+
 # Exercício 3 - Insertion Sort
 
 ## Original:
@@ -138,6 +152,9 @@
 | x5 | 109 | 0.0 |
 | x6 | 83 | 0.01 |
 | x7 | 110 | 0.0 |
+
+## Análise Comparativa das Execuções
+Nesse caso em específico, ambas as implementações são extremamente parecidas quanto a tempo de execução, e iguais com relação à quantidade de trocas. O motivo disso é que, mesmo que as implementações em código sejam diferentes, as operações realizadas nas duas abordagens são praticamente as mesmas, e dessa forma os algoritmos tem comportamento praticamente igual.
 
 # Exercício 4 - Quick Sort
 
@@ -198,6 +215,9 @@
 | x6 | 86 | 0.0 |
 | x7 | 74 | 0.0 |
 
+## Análise Comparativa das Execuções
+Do algoritmo original para a primeira variação, é fácil entender o motivo de, em todos os casos, o número de comparações cair pela metade. O algoritmo original filtra os menores e maiores que o pivô percorrendo a lista duas vezes, uma para cada lista derivada. Já a primeira variação separa as listas derivadas percorrendo a original apenas uma vez, e assim, metade das comparações são necessárias. Da primeira para a segunda variação, o processo de escolha do pivô é melhorado, levando em conta as três primeiras posições, e em alguns casos isso promove uma melhoria considerável na quantidade de comparações que são necessárias. Contudo, também é visto um caso (da lista de teste `x6`) em que essa escolha acaba aumentando o número de comparações: a lista está disposta de uma forma que o algoritmo não a divide em partes vantajosas, dada a escolha de um pivô entre os primeiros três elementos.
+
 # Exercício 5 - Merge Sort
 
 | Lista | Comparações | Tempo (s) | 
@@ -216,3 +236,6 @@
 | x5 | 49 | 0.0 |
 | x6 | 60 | 0.0 |
 | x7 | 65 | 0.0 |
+
+## Análise Comparativa das Execuções
+Comparado com as melhores versões dos algoritmos Selection Sort e Quicksort, podemos observar algumas diferenças interessantes. Entre os três, o Selection Sort é o que tem os menores valores de trocas realizadas, comparadas à quantidade de comparações realizadas nos outros dois. Além disso, o Selection Sort se mostra eficiente (com relação a quantidade de trocas) com listas que estão quase ordenadas inicialmente, o que não é levado em conta pelos outros dois. Contudo, os outros dois algoritmos executam em tempos muito menores, sendo o Merge Sort o mais rápido, e com uma diferença considerável com relação ao número de comparações e tempo de execução do Quicksort. Assim, o Merge Sort se mostra consideravelmente mais eficiente que os algoritmos Selection Sort e Quicksort, tanto em tempo de execução quanto em comparações.
